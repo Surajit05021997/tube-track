@@ -1,0 +1,13 @@
+@import './base.css';
+
+/* general styling */
+body {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-200);
+  color: var(--clr-neutral-700);
+  line-height: 1.4;
+}
+
+a {
+  color: var(--clr-neutral-700);
+}

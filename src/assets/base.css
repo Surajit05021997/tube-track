@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* css variables */
+:root {
+  /* colors */
+  --clr-neutral-100: #ffffff;
+  --clr-neutral-150: #f3f3f3;
+  --clr-neutral-170: #f0f6ff;
+  --clr-neutral-200: #ececec;
+  --clr-neutral-300: #dedede;
+  --clr-neutral-400: #b3b3b3;
+  --clr-neutral-600: #959595;
+  --clr-neutral-700: #3d4152;
+  --clr-neutral-800: #2d2f3b;
+  --clr-neutral-900: #000000;
+  --clr-success: #65b741;
+  --clr-error: #ee4e4e;
+  --clr-primary-200: #8bd389;
+  --clr-primary-300: #6ac594;
+  --clr-primary-400: #36aa97;
+  --clr-primary-500: #29a296;
+
+  /* font family */
+  --ff-primary: "Roboto", sans-serif;
+
+  /* font weight */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  /* font size */
+  --fs-100: 0.875rem;
+  --fs-200: 1rem;
+  --fs-300: 1.125rem;
+  --fs-350: 1.25rem;
+  --fs-400: 1.5rem;
+  --fs-450: 1.75rem;
+  --fs-500: 2rem;
+  --fs-600: 2.5rem;
+  --fs-700: 3rem;
+  --fs-750: 4rem;
+  --fs-800: 5.5rem;
+  --fs-900: 6.25rem;
+}
+
+/** css reset **/
+*,
+*::before,
+*::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
