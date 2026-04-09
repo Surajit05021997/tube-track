@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import axios from 'axios';
 
 export const useShowsStore = defineStore('shows', {
   state: () => ({
@@ -8,6 +9,13 @@ export const useShowsStore = defineStore('shows', {
     
   },
   actions: {
-    
+    async fetchShows() {
+      try {
+        const res = await axios.get('https://api.tvmaze.com/shows');
+        this.shows = res.data;
+      } catch (err) {
+        throw err;
+      }
+    },
   },
 });
