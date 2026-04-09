@@ -6,7 +6,9 @@ export const useShowsStore = defineStore('shows', {
     shows: [],
   }),
   getters: {
-    
+    topShows: (state) => {
+      return state.shows.filter((show) => show?.rating?.average >= 8.5).slice(0, 10);
+    }
   },
   actions: {
     async fetchShows() {
