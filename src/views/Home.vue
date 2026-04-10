@@ -1,7 +1,7 @@
 <template>
-  <div v-if="showsStore.topShows.length" class="top-shows" :style="heroStyle">
+  <div class="top-shows" :style="heroStyle">
     <div class="overlay">
-      <div  class="content">
+      <div v-if="showsStore.topShows.length" class="content">
         <h1 class="top-show-title">{{ showsStore.topShows[5]?.name }}</h1>
         <div class="top-show-summary" v-html="showsStore.topShows[5]?.summary"></div>
         <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
