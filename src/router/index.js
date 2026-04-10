@@ -1,10 +1,12 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Home from '@/views/Home.vue';
 import ShowDetails from '@/views/ShowDetails.vue';
+import SearchPage from '@/views/SearchPage.vue';
 
 const routes = [
   { path: '/', component: Home },
   { path: '/show-details/:id', component: ShowDetails },
+  { path: '/search/:searchText', component: SearchPage },
 ]
 
 export const router = createRouter({
