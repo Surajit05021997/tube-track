@@ -3,6 +3,7 @@
     <div class="overlay">
       <div class="content">
         <h1>{{showsStore.showDetails?.name}}</h1>
+        <AppButton btnText="Watch"></AppButton>
         <div v-html="showsStore.showDetails?.summary"></div>
       </div>
     </div>
@@ -13,6 +14,7 @@
 import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router'
 import { useShowsStore } from '@/store/shows';
+import AppButton from '@/components/AppButton.vue';
 
 const route = useRoute();
 const showsStore = useShowsStore();

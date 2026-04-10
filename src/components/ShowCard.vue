@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const props = defineProps(['imgUrl'])
+const props = defineProps(['imgUrl']);
 </script>
 
 <style scoped>
