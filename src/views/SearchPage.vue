@@ -85,6 +85,8 @@ watch(
       align-items: center;
       gap: .5rem;
       position: relative;
+      padding-block: 1rem;
+      font-size: 1.5rem;
 
       .search-icon {
         position: absolute;
