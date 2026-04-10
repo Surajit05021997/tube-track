@@ -2,8 +2,8 @@
   <div class="top-shows" :style="heroStyle">
     <div class="overlay">
       <div v-if="showsStore.topShows.length" class="content">
-        <h1 class="top-show-title">{{ showsStore.topShows[0]?.name }}</h1>
-        <div v-html="showsStore.topShows[0]?.summary"></div>
+        <h1 class="top-show-title">{{ showsStore.topShows[5]?.name }}</h1>
+        <div class="top-show-summary" v-html="showsStore.topShows[5]?.summary"></div>
         <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
       </div>
     </div>
@@ -25,7 +25,7 @@ import { useWatchShow } from '@/composables/useWatchShow';
 const showsStore = useShowsStore();
 const { watchShow } = useWatchShow();
 
-const heroImage = computed(() => showsStore.topShows[0]?.image?.original || '');
+const heroImage = computed(() => showsStore.topShows[5]?.image?.original || '');
 const heroStyle = computed(() => {
   if (heroImage.value) {
     return {
@@ -47,7 +47,7 @@ onMounted(async () => {
 });
 
 const watchButtonHandler = () => {
-  watchShow(showsStore.topShows[0]);
+  watchShow(showsStore.topShows[5]);
 }
 </script>
 
@@ -75,6 +75,10 @@ const watchButtonHandler = () => {
 .top-shows .top-show-title {
   margin: 0 0 0.5rem 0;
   font-size: 5rem;
+}
+
+.top-show-summary {
+  font-size: 1.25rem;
 }
 
 .show-list-by-genre {

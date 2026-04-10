@@ -59,7 +59,7 @@ const searchShow = () => {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(180deg,rgba(14, 16, 18, 1) 10%, rgba(14, 16, 18, 0.41) 66%, rgba(14, 16, 18, 0) 100%);
+  background: rgb(0, 0, 0, .9);
 
   .app-header {
     display: flex;

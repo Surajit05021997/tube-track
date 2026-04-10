@@ -11,6 +11,11 @@ const props = defineProps(['imgUrl']);
 <style scoped>
   .show-card {
     width: 10rem;
+    transition: transform .2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     img {
       border-radius: 4px;

@@ -28,6 +28,7 @@ const showsStore = useShowsStore();
   .shows-list-title {
     font-weight: 600;
     font-size: 1.5rem;
+    padding-inline: 1rem;
     color: var(--clr-neutral-200);
   }
 }
@@ -36,6 +37,7 @@ const showsStore = useShowsStore();
   display: flex;
   overflow-x: scroll;
   gap: 20px;
+  padding: 1rem;
   /* For Firefox */
   scrollbar-width: none; 
   /* For IE and Edge */
