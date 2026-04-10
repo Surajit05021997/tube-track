@@ -1,6 +1,6 @@
 <template>
   <div class="shows-list">
-    <div>{{ props.title }}</div>
+    <div class="shows-list-title">{{ props.title }}</div>
     <div class="show-card-container">
       <div v-for="show in showsStore.showsByGenre[title]">
         <RouterLink :to="`/show-details/${show.id}`">
@@ -24,10 +24,26 @@ const showsStore = useShowsStore();
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+
+  .shows-list-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--clr-neutral-200);
+  }
 }
 
 .show-card-container {
   display: flex;
   overflow-x: scroll;
+  gap: 20px;
+  /* For Firefox */
+  scrollbar-width: none; 
+  /* For IE and Edge */
+  -ms-overflow-style: none; 
+}
+
+/* For Chrome, Safari, and newer Edge */
+.show-card-container::-webkit-scrollbar {
+  display: none;
 }
 </style>

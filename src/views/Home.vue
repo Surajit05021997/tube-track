@@ -2,13 +2,15 @@
   <div class="top-shows" :style="heroStyle">
     <div class="overlay">
       <div class="content">
-        <h1>{{ showsStore.topShows[0]?.name }}</h1>
+        <h1 class="top-show-title">{{ showsStore.topShows[0]?.name }}</h1>
         <div v-html="showsStore.topShows[0]?.summary"></div>
       </div>
     </div>
   </div>
-  <div v-for="genre in showsStore.allGenres">
-    <ShowsList :title="genre"></ShowsList>
+  <div class="show-list-by-genre">
+    <div v-for="genre in showsStore.allGenres">
+      <ShowsList :title="genre"></ShowsList>
+    </div>
   </div>
 </template>
 
@@ -62,8 +64,12 @@ onMounted(async () => {
   max-width: 70%;
   padding-bottom: 10rem;
 }
-.top-shows h1 {
+.top-shows .top-show-title {
   margin: 0 0 0.5rem 0;
-  font-size: 2rem;
+  font-size: 5rem;
+}
+
+.show-list-by-genre {
+  background-color: rgba(26, 29, 41, 1);
 }
 </style>

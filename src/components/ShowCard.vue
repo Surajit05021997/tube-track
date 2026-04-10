@@ -11,6 +11,9 @@ const props = defineProps(['imgUrl']);
 <style scoped>
   .show-card {
     width: 10rem;
-    border-radius: 10px;
+
+    img {
+      border-radius: 4px;
+    }
   }
 </style>
