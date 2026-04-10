@@ -7,11 +7,15 @@
       </div>
     </div>
   </div>
+  <div v-for="genre in showsStore.allGenres">
+    <ShowsList :title="genre"></ShowsList>
+  </div>
 </template>
 
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useShowsStore } from '@/store/shows';
+import ShowsList from '@/components/ShowsList.vue';
 
 const showsStore = useShowsStore();
 
