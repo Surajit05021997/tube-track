@@ -3,15 +3,16 @@
     <header class="app-header">
       <div class="header-items-left">
         <div class="logo">
-          <img :src="logo" alt="TubeTrack Logo" />
+          <RouterLink to="/">
+            <img :src="logo" alt="TubeTrack Logo" />
+          </RouterLink>
         </div>
         <div>
           <nav class="main-nav">
             <ul>
               <li>
                 <RouterLink to="/">
-                  <img :src="homeIcon" alt="" />
-                  <span>Home</span>
+                  <span>HOME</span>
                 </RouterLink>
               </li>
             </ul>
@@ -35,7 +36,6 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import logo from '@/assets/icons/TubeTrack-Logo.png';
-import homeIcon from '@/assets/icons/home-icon.svg';
 import searchIcon from '@/assets/icons/search-icon.svg';
 import userIcon from '@/assets/icons/user-icon.svg';
 
@@ -44,8 +44,10 @@ const searchText = ref('');
 const router = useRouter();
 
 const searchShow = () => {
-  router.push({ path: `/search/${searchText.value}` });
-  searchText.value = '';
+  if(searchText.value.trim()) {
+    router.push({ path: `/search/${searchText.value}` });
+    searchText.value = '';
+  }
 }
 </script>
 
@@ -57,7 +59,7 @@ const searchShow = () => {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(180deg,rgba(14, 16, 18, 1) 0%, rgba(14, 16, 18, 0) 100%);
+  background: linear-gradient(180deg,rgba(14, 16, 18, 1) 10%, rgba(14, 16, 18, 0.41) 66%, rgba(14, 16, 18, 0) 100%);
 
   .app-header {
     display: flex;
@@ -72,7 +74,7 @@ const searchShow = () => {
     .header-items-left,
     .header-items-right {
       display: flex;
-      align-items: end;
+      align-items: center;
       gap: 2rem;
     }
 
@@ -81,6 +83,11 @@ const searchShow = () => {
       align-items: end;
       gap: .5rem;
       color: var(--clr-neutral-200);
+      transition: color .1s;
+
+      &:hover {
+        color: var(--clr-primary-400);
+      }
     }
 
     .logo {
@@ -107,9 +114,6 @@ const searchShow = () => {
         outline: none;
       }
     }
-
   }
 }
-
-
 </style>
