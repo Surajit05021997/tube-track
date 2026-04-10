@@ -1,6 +1,10 @@
 <template>
   <div class="search-page">
     <div class="seach-container">
+      <div class="search">
+        <img class="search-icon" :src="searchIcon" alt="" />
+        <input class="search-bar" type="text" v-model="searchText" @keyup.enter="searchShow">
+      </div>
       <div>Search Results for: {{ route.params.searchText }}</div>
       <div class="search-result">
         <div v-for="showObj in showsStore.searchResult" :key="showObj.show.id">
@@ -16,14 +20,24 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useShowsStore } from '@/store/shows';
 import ShowCard from '@/components/ShowCard.vue';
+import searchIcon from '@/assets/icons/search-icon.svg';
 
 const route = useRoute();
+const router = useRouter();
 const showsStore = useShowsStore();
 
+const searchText = ref('');
 const noShowsFound = ref(false);
+
+const searchShow = () => {
+  if(searchText.value.trim()) {
+    router.push({ path: `/search/${searchText.value}` });
+    searchText.value = '';
+  }
+}
 
 const performSearch = async (query) => {
   if (!query) return;
@@ -47,6 +61,7 @@ onMounted(() => {
 watch(
   () => route.params.searchText,
   (newSearchText) => {
+    showsStore.searchResult = [];
     performSearch(newSearchText);
   }
 );
@@ -64,6 +79,27 @@ watch(
     margin: 0 auto;
     padding: 1rem 2rem;
     padding-top: 6rem;
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      position: relative;
+
+      .search-icon {
+        position: absolute;
+        left: 8px;
+      }
+
+      .search-bar {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.259);
+        color: white;
+        padding: 8px 15px 8px 36px;
+        border-radius: 4px;
+        outline: none;
+      }
+    }
   
     .search-result {
       padding-block: 2rem;

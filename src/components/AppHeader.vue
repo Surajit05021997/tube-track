@@ -21,8 +21,9 @@
       </div>
       <div class="header-items-right">
         <div class="search">
-          <img class="search-icon" :src="searchIcon" alt="" />
-          <input class="search-bar" type="text" v-model="searchText" @keyup.enter="searchShow">
+          <RouterLink to="/search">
+            <img class="search-icon" :src="searchIcon" alt="" />
+          </RouterLink>
         </div>
         <div class="profile-invoker">
           <img :src="userIcon" alt="" />
@@ -33,22 +34,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router'
 import logo from '@/assets/icons/TubeTrack-Logo.png';
 import searchIcon from '@/assets/icons/search-icon.svg';
 import userIcon from '@/assets/icons/user-icon.svg';
 
-const searchText = ref('');
 
-const router = useRouter();
-
-const searchShow = () => {
-  if(searchText.value.trim()) {
-    router.push({ path: `/search/${searchText.value}` });
-    searchText.value = '';
-  }
-}
 </script>
 
 <style scoped>
@@ -98,21 +88,6 @@ const searchShow = () => {
       display: flex;
       align-items: center;
       gap: .5rem;
-      position: relative;
-
-      .search-icon {
-        position: absolute;
-        left: 8px;
-      }
-
-      .search-bar {
-        background-color: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.259);
-        color: white;
-        padding: 8px 15px 8px 36px;
-        border-radius: 4px;
-        outline: none;
-      }
     }
   }
 }
