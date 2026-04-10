@@ -10,11 +10,19 @@ const props = defineProps(['imgUrl']);
 
 <style scoped>
   .show-card {
-    width: 10rem;
+    width: 6rem;
     transition: transform .2s;
 
     &:hover {
       transform: scale(1.1);
+    }
+
+    @media screen and (min-width: 480px) {
+      width: 8rem;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 10rem;
     }
 
     img {

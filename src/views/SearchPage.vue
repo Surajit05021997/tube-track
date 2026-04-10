@@ -54,7 +54,7 @@ watch(
 
 <style scoped>
 .search-page {
-  background-color: rgba(26, 29, 41, 1);
+  background-color: var(--clr-neutral-800);
   min-height: 100vh;
   font-size: 2rem;
   color: var(--clr-neutral-200);

@@ -78,12 +78,24 @@ const watchButtonHandler = () => {
   }
 
   .content {
-    max-width: 70%;
-    padding-bottom: 10rem;
+    max-width: 100%;
+    padding-bottom: 6rem;
+
+    @media screen and (min-width: 768px) {
+      padding-bottom: 10rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      max-width: 70%;
+    }
     
     .show-title {
       margin-bottom: .5rem;
-      font-size: 5rem;
+      font-size: 3rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 5rem;
+      }
     }
 
     .metadata {
@@ -113,6 +125,10 @@ const watchButtonHandler = () => {
       font-size: .9rem;
       color: var(--clr-neutral-200);
       font-weight: 400;
+
+      @media screen and (min-width: 768px) {
+        font-size: .8rem;
+      }
     }
 
     .watch-button {
@@ -120,7 +136,16 @@ const watchButtonHandler = () => {
     }
 
     .summary {
-      font-size: 1.25rem;
+      font-size: 1rem;
+      text-align: justify;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.25rem;
+      }
+
+      @media screen and (min-width: 1024px) {
+        text-align: left;
+      }
     }
   }
 }

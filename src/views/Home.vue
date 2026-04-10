@@ -57,35 +57,59 @@ const watchButtonHandler = () => {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  color: #fff;
-}
-.top-shows .overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.top-shows .content {
-  max-width: 70%;
-  padding-bottom: 10rem;
-}
-.top-shows .top-show-title {
-  margin: 0 0 0.5rem 0;
-  font-size: 5rem;
-}
+  color: var(--clr-neutral-200);
 
-.top-show-summary {
-  font-size: 1.25rem;
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .content {
+      max-width: 100%;
+      padding-bottom: 6rem;
+
+      @media screen and (min-width: 768px) {
+        padding-bottom: 10rem;
+      }
+
+      @media screen and (min-width: 1024px) {
+        max-width: 70%;
+      }
+
+      .top-show-title {
+        margin: 0 0 0.5rem 0;
+        font-size: 3rem;
+
+        @media screen and (min-width: 768px) {
+          font-size: 5rem;
+        }
+      }
+
+      .top-show-summary {
+        font-size: 1rem;
+        text-align: justify;
+
+        @media screen and (min-width: 768px) {
+          font-size: 1.25rem;
+        }
+
+        @media screen and (min-width: 1024px) {
+          text-align: left;
+        }
+      }
+
+      .watch-button {
+        margin-block: 2rem;
+      }
+    }
+  }
 }
 
 .show-list-by-genre {
-  background-color: rgba(26, 29, 41, 1);
-}
-
-.watch-button {
-  margin-block: 2rem;
+  background-color: var(--clr-neutral-800);
 }
 </style>
