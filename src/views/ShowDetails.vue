@@ -14,11 +14,14 @@
         <div class="summary" v-html="showsStore.showDetails?.summary"></div>
       </div>
     </div>
+    <div v-if="showDetailsError">
+      <h1 class="show-detail-error">Failed to load show details!</h1>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router'
 import { useShowsStore } from '@/store/shows';
 import AppButton from '@/components/AppButton.vue';
@@ -27,6 +30,8 @@ import { useWatchShow } from '@/composables/useWatchShow';
 const route = useRoute();
 const showsStore = useShowsStore();
 const { watchShow } = useWatchShow();
+
+const showDetailsError = ref(false);
 
 const heroImage = computed(() => showsStore.showDetails?.image?.original || '');
 const heroStyle = computed(() => {
@@ -48,9 +53,10 @@ const formattedGenres = computed(() => {
 onMounted(async () => {
   try {
     showsStore.showDetails = null;
+    showDetailsError.value = false;
     await showsStore.fetchShowDetails(route.params.id);
   } catch (err) {
-    console.error('Failed to load shows', err);
+    showDetailsError.value = true;
   }
 });
 
@@ -147,6 +153,13 @@ const watchButtonHandler = () => {
         text-align: left;
       }
     }
+  }
+
+  .show-detail-error {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

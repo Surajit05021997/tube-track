@@ -1,22 +1,25 @@
 <template>
-  <div class="top-shows" :style="heroStyle">
+  <div v-if="showsStore.topShows.length" class="top-shows" :style="heroStyle">
     <div class="overlay">
-      <div v-if="showsStore.topShows.length" class="content">
+      <div  class="content">
         <h1 class="top-show-title">{{ showsStore.topShows[5]?.name }}</h1>
         <div class="top-show-summary" v-html="showsStore.topShows[5]?.summary"></div>
         <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
       </div>
     </div>
   </div>
-  <div class="show-list-by-genre">
+  <div v-if="showsStore.shows.length" class="show-list-by-genre">
     <div v-for="genre in showsStore.allGenres">
       <ShowsList :title="genre"></ShowsList>
     </div>
   </div>
+  <div class="show-error" v-if="showsError">
+    <h1>Failed to load shows!</h1>
+  </div>
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useShowsStore } from '@/store/shows';
 import ShowsList from '@/components/ShowsList.vue';
 import AppButton from '@/components/AppButton.vue';
@@ -24,6 +27,8 @@ import { useWatchShow } from '@/composables/useWatchShow';
 
 const showsStore = useShowsStore();
 const { watchShow } = useWatchShow();
+
+const showsError = ref(false);
 
 const heroImage = computed(() => showsStore.topShows[5]?.image?.original || '');
 const heroStyle = computed(() => {
@@ -40,9 +45,11 @@ const heroStyle = computed(() => {
 
 onMounted(async () => {
   try {
+    showsError.value = false;
     await showsStore.fetchShows();
   } catch (err) {
     console.error('Failed to load shows', err);
+    showsError.value = true;
   }
 });
 
@@ -111,5 +118,14 @@ const watchButtonHandler = () => {
 
 .show-list-by-genre {
   background-color: var(--clr-neutral-800);
+}
+
+.show-error {
+  min-height: 100vh;
+  background-color: var(--clr-neutral-800);
+  color: var(--clr-neutral-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

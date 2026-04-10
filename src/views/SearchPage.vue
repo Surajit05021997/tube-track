@@ -14,6 +14,7 @@
         </div>
       </div>
       <div v-if="noShowsFound">No shows found!</div>
+      <div class="search-result-error" v-if="searchResultError">Some thing went wrong - Try Again!</div>
     </div>
   </div>
 </template>
@@ -31,6 +32,7 @@ const showsStore = useShowsStore();
 
 const searchText = ref('');
 const noShowsFound = ref(false);
+const searchResultError = ref(false);
 
 const searchShow = () => {
   if(searchText.value.trim()) {
@@ -43,6 +45,7 @@ const performSearch = async (query) => {
   if (!query) return;
   try {
     showsStore.searchResult = [];
+    searchResultError.value = false;
     noShowsFound.value = false;
     await showsStore.serchShows(query);
     if(showsStore.searchResult.length === 0) {
@@ -50,6 +53,7 @@ const performSearch = async (query) => {
     }
   } catch (err) {
     console.error('Failed to search shows', err);
+    searchResultError.value = true;
   }
 };
 
@@ -109,6 +113,10 @@ watch(
       gap: 20px;
       flex-wrap: wrap;
     }
+  }
+
+  .search-result-error {
+    text-align: center;
   }
 }
 </style>
