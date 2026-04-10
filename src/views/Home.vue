@@ -17,9 +17,15 @@ const showsStore = useShowsStore();
 
 const heroImage = computed(() => showsStore.topShows[0]?.image?.original || '');
 const heroStyle = computed(() => {
-  return heroImage.value
-    ? { backgroundImage: `url(${heroImage.value})` }
-    : { backgroundColor: '#111' };
+  if (heroImage.value) {
+    return {
+      backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)), url(${heroImage.value})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    };
+  }
+
+  return { backgroundColor: '#111' };
 });
 
 onMounted(async () => {
@@ -42,10 +48,11 @@ onMounted(async () => {
 .top-shows .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
   display: flex;
   align-items: flex-end;
   padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 .top-shows .content {
   max-width: 70%;
