@@ -5,6 +5,7 @@ export const useShowsStore = defineStore('shows', {
   state: () => ({
     shows: [],
     showDetails: null,
+    searchResult: [],
   }),
   getters: {
     topShows: (state) => {
@@ -45,6 +46,14 @@ export const useShowsStore = defineStore('shows', {
       try {
         const res = await axios.get(`https://api.tvmaze.com/shows/${showId}`);
         this.showDetails = res.data;
+      } catch (err) {
+        throw err;
+      }
+    },
+    async serchShows(searchText) {
+      try {
+        const res = await axios.get(`https://api.tvmaze.com/search/shows?q=${searchText}`);
+        this.searchResult = res.data;
       } catch (err) {
         throw err;
       }
