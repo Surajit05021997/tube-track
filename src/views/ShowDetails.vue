@@ -5,7 +5,7 @@
         <h1 class="show-title">{{showsStore.showDetails?.name}}</h1>
         <div class="metadata">
           <span class="badge rating">{{ showsStore.showDetails?.rating?.average || 'N/A' }}</span>
-          <span class="text-info">{{ showsStore.showDetails?.runtime }} min</span>
+          <span class="text-info">{{ showsStore.showDetails?.runtime }} {{showsStore.showDetails?.runtime ? 'min': ''}}</span>
         </div>
         <div class="genres-row">
           {{ formattedGenres }}
