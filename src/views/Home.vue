@@ -19,7 +19,7 @@ const heroImage = computed(() => showsStore.topShows[0]?.image?.original || '');
 const heroStyle = computed(() => {
   if (heroImage.value) {
     return {
-      backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)), url(${heroImage.value})`,
+      backgroundImage: `linear-gradient(180deg,rgba(26, 29, 41, 0) 0%, rgba(26, 29, 41, 0.79) 60%, rgba(26, 29, 41, 1) 100%), url(${heroImage.value})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat'
     };
@@ -39,7 +39,7 @@ onMounted(async () => {
 
 <style scoped>
 .top-shows {
-  height: 80vh;
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;

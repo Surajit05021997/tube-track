@@ -45,7 +45,7 @@ import userIcon from '@/assets/icons/user-icon.svg';
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(to bottom, rgb(0, 0, 0), transparent);
+  background: linear-gradient(180deg,rgba(14, 16, 18, 1) 0%, rgba(14, 16, 18, 0) 100%);
 
   .app-header {
     display: flex;
