@@ -1,7 +1,7 @@
 <template>
   <div class="show-details" :style="heroStyle">
     <div class="overlay">
-      <div class="content">
+      <div v-if="showsStore.showDetails" class="content">
         <h1 class="show-title">{{showsStore.showDetails?.name}}</h1>
         <div class="metadata">
           <span class="badge rating">{{ showsStore.showDetails?.rating?.average || 'N/A' }}</span>
@@ -10,7 +10,7 @@
         <div class="genres-row">
           {{ formattedGenres }}
         </div>
-        <AppButton class="watch-button" btnText="Watch"></AppButton>
+        <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
         <div class="summary" v-html="showsStore.showDetails?.summary"></div>
       </div>
     </div>
@@ -22,9 +22,11 @@ import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router'
 import { useShowsStore } from '@/store/shows';
 import AppButton from '@/components/AppButton.vue';
+import { useWatchShow } from '@/composables/useWatchShow';
 
 const route = useRoute();
 const showsStore = useShowsStore();
+const { watchShow } = useWatchShow();
 
 const heroImage = computed(() => showsStore.showDetails?.image?.original || '');
 const heroStyle = computed(() => {
@@ -51,6 +53,10 @@ onMounted(async () => {
     console.error('Failed to load shows', err);
   }
 });
+
+const watchButtonHandler = () => {
+  watchShow(showsStore.showDetails);
+}
 </script>
 
 <style scoped>

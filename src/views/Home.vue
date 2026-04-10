@@ -1,9 +1,10 @@
 <template>
   <div class="top-shows" :style="heroStyle">
     <div class="overlay">
-      <div class="content">
+      <div v-if="showsStore.topShows.length" class="content">
         <h1 class="top-show-title">{{ showsStore.topShows[0]?.name }}</h1>
         <div v-html="showsStore.topShows[0]?.summary"></div>
+        <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
       </div>
     </div>
   </div>
@@ -18,8 +19,11 @@
 import { onMounted, computed } from 'vue';
 import { useShowsStore } from '@/store/shows';
 import ShowsList from '@/components/ShowsList.vue';
+import AppButton from '@/components/AppButton.vue';
+import { useWatchShow } from '@/composables/useWatchShow';
 
 const showsStore = useShowsStore();
+const { watchShow } = useWatchShow();
 
 const heroImage = computed(() => showsStore.topShows[0]?.image?.original || '');
 const heroStyle = computed(() => {
@@ -41,6 +45,10 @@ onMounted(async () => {
     console.error('Failed to load shows', err);
   }
 });
+
+const watchButtonHandler = () => {
+  watchShow(showsStore.topShows[0]);
+}
 </script>
 
 <style scoped>
@@ -71,5 +79,9 @@ onMounted(async () => {
 
 .show-list-by-genre {
   background-color: rgba(26, 29, 41, 1);
+}
+
+.watch-button {
+  margin-block: 2rem;
 }
 </style>
