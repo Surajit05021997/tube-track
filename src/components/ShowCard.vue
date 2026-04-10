@@ -1,5 +1,5 @@
 <template>
-  <div class="shows-card">
+  <div class="show-card">
     <img :src="imgUrl" alt="">
   </div>
 </template>
@@ -10,7 +10,7 @@ const props = defineProps(['imgUrl'])
 
 <style scoped>
   .show-card {
-    height: 10rem;
+    width: 10rem;
     border-radius: 10px;
   }
 </style>

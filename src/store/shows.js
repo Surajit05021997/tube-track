@@ -4,6 +4,7 @@ import axios from 'axios';
 export const useShowsStore = defineStore('shows', {
   state: () => ({
     shows: [],
+    showDetails: null,
   }),
   getters: {
     topShows: (state) => {
@@ -36,6 +37,14 @@ export const useShowsStore = defineStore('shows', {
       try {
         const res = await axios.get('https://api.tvmaze.com/shows');
         this.shows = res.data;
+      } catch (err) {
+        throw err;
+      }
+    },
+    async fetchShowDetails(showId) {
+      try {
+        const res = await axios.get(`https://api.tvmaze.com/shows/${showId}`);
+        this.showDetails = res.data;
       } catch (err) {
         throw err;
       }

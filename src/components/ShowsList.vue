@@ -3,7 +3,9 @@
     <div>{{ props.title }}</div>
     <div class="show-card-container">
       <div v-for="show in showsStore.showsByGenre[title]">
-        <ShowCard :imgUrl="show.image.medium"></ShowCard>
+        <RouterLink :to="`/show-details/${show.id}`">
+          <ShowCard :imgUrl="show.image.medium"></ShowCard>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -26,5 +28,6 @@ const showsStore = useShowsStore();
 
 .show-card-container {
   display: flex;
+  overflow-x: scroll;
 }
 </style>
