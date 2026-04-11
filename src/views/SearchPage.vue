@@ -6,7 +6,10 @@
         <input class="search-bar" type="text" v-model="searchText" @keyup.enter="searchShow">
       </div>
       <div>Search Results for: {{ route.params.searchText }}</div>
-      <div class="search-result">
+      <div class="loading" v-if="isLoading">
+        <img :src="loadingIcon" alt="">
+      </div>
+      <div v-if="!isLoading" class="search-result">
         <div v-for="showObj in showsStore.searchResult" :key="showObj.show.id">
           <RouterLink :to="`/show-details/${showObj.show.id}`">
             <ShowCard :imgUrl="showObj.show.image.medium"></ShowCard>
@@ -25,6 +28,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useShowsStore } from '@/store/shows';
 import ShowCard from '@/components/ShowCard.vue';
 import searchIcon from '@/assets/icons/search-icon.svg';
+import loadingIcon from '@/assets/icons/loading-icon.svg';
 
 const route = useRoute();
 const router = useRouter();
@@ -33,6 +37,8 @@ const showsStore = useShowsStore();
 const searchText = ref('');
 const noShowsFound = ref(false);
 const searchResultError = ref(false);
+const isLoading = ref(false);
+showsStore.searchResult = [];
 
 const searchShow = () => {
   if(searchText.value.trim()) {
@@ -44,6 +50,7 @@ const searchShow = () => {
 const performSearch = async (query) => {
   if (!query) return;
   try {
+    isLoading.value = true;
     showsStore.searchResult = [];
     searchResultError.value = false;
     noShowsFound.value = false;
@@ -52,8 +59,9 @@ const performSearch = async (query) => {
       noShowsFound.value = true;
     }
   } catch (err) {
-    console.error('Failed to search shows', err);
     searchResultError.value = true;
+  } finally {
+    isLoading.value = false;
   }
 };
 
@@ -117,6 +125,17 @@ watch(
 
   .search-result-error {
     text-align: center;
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-neutral-800);
+  
+    img {
+      width: 100px;
+    }
   }
 }
 </style>

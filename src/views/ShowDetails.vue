@@ -1,5 +1,8 @@
 <template>
-  <div class="show-details" :style="heroStyle">
+  <div class="loading" v-if="isLoading">
+    <img :src="loadingIcon" alt="">
+  </div>
+  <div class="show-details" v-if="!isLoading && !showDetailsError" :style="heroStyle">
     <div class="overlay">
       <div v-if="showsStore.showDetails" class="content">
         <h1 class="show-title">{{showsStore.showDetails?.name}}</h1>
@@ -14,9 +17,9 @@
         <div class="summary" v-html="showsStore.showDetails?.summary"></div>
       </div>
     </div>
-    <div v-if="showDetailsError">
-      <h1 class="show-detail-error">Failed to load show details!</h1>
-    </div>
+  </div>
+  <div v-if="showDetailsError">
+    <h1 class="show-detail-error">Failed to load show details!</h1>
   </div>
 </template>
 
@@ -26,12 +29,14 @@ import { useRoute } from 'vue-router'
 import { useShowsStore } from '@/store/shows';
 import AppButton from '@/components/AppButton.vue';
 import { useWatchShow } from '@/composables/useWatchShow';
+import loadingIcon from '@/assets/icons/loading-icon.svg';
 
 const route = useRoute();
 const showsStore = useShowsStore();
 const { watchShow } = useWatchShow();
 
 const showDetailsError = ref(false);
+const isLoading = ref(false);
 
 const heroImage = computed(() => showsStore.showDetails?.image?.original || '');
 const heroStyle = computed(() => {
@@ -52,11 +57,14 @@ const formattedGenres = computed(() => {
 
 onMounted(async () => {
   try {
+    isLoading.value = true;
     showsStore.showDetails = null;
     showDetailsError.value = false;
     await showsStore.fetchShowDetails(route.params.id);
   } catch (err) {
     showDetailsError.value = true;
+  } finally {
+    isLoading.value = false;
   }
 });
 
@@ -154,12 +162,26 @@ const watchButtonHandler = () => {
       }
     }
   }
+}
 
-  .show-detail-error {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.show-detail-error {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-neutral-800);
+  color: var(--clr-neutral-200);
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-neutral-800);
+
+  img {
+    width: 100px;
   }
 }
 </style>
