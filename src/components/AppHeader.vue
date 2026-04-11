@@ -7,26 +7,24 @@
             <img :src="logo" alt="TubeTrack Logo" />
           </RouterLink>
         </div>
-        <div>
-          <nav class="main-nav">
-            <ul>
-              <li>
-                <RouterLink to="/">
-                  <span>HOME</span>
-                </RouterLink>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <nav class="main-nav">
+          <ul>
+            <li>
+              <RouterLink to="/">
+                <div>HOME</div>
+              </RouterLink>
+            </li>
+          </ul>
+        </nav>
       </div>
       <div class="header-items-right">
         <div class="search">
           <RouterLink to="/search">
-            <img class="search-icon" :src="searchIcon" alt="" />
+            <img class="search-icon" :src="searchIcon" alt="Search Shows Icon" />
           </RouterLink>
         </div>
         <div class="profile-invoker">
-          <img :src="userIcon" alt="" />
+          <img :src="userIcon" alt="Profile Inkover" />
         </div>
       </div>
     </header>
@@ -37,19 +35,16 @@
 import logo from '@/assets/icons/TubeTrack-Logo.png';
 import searchIcon from '@/assets/icons/search-icon.svg';
 import userIcon from '@/assets/icons/user-icon.svg';
-
-
 </script>
 
 <style scoped>
 .header-container {
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  background: rgb(0, 0, 0, .9);
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.9);
 
   .app-header {
     display: flex;
@@ -58,7 +53,6 @@ import userIcon from '@/assets/icons/user-icon.svg';
     max-width: 1400px;
     margin: 0 auto;
     padding: 1rem 2rem;
-    width: 100%;
     position: relative;
 
     .header-items-left,
@@ -69,11 +63,8 @@ import userIcon from '@/assets/icons/user-icon.svg';
     }
 
     .main-nav ul li a {
-      display: flex;
-      align-items: end;
-      gap: .5rem;
       color: var(--clr-neutral-200);
-      transition: color .1s;
+      transition: color 0.1s;
 
       &:hover {
         color: var(--clr-primary-400);
@@ -86,12 +77,6 @@ import userIcon from '@/assets/icons/user-icon.svg';
       @media screen and (min-width: 768px) {
         width: 10rem;
       }
-    }
-
-    .search {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
     }
   }
 }

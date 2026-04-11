@@ -1,6 +1,6 @@
 <template>
   <div class="show-card">
-    <img :src="imgUrl" alt="">
+    <img :src="imgUrl" alt="Show Image">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ const props = defineProps(['imgUrl']);
 <style scoped>
   .show-card {
     width: 6rem;
-    transition: transform .2s;
+    transition: transform 0.2s;
 
     &:hover {
       transform: scale(1.1);

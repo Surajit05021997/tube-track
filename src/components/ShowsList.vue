@@ -19,9 +19,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import ShowCard from './ShowCard.vue';
 import { useShowsStore } from '@/store/shows';
+import ShowCard from './ShowCard.vue';
 import arrowIcon from '@/assets/icons/arrow-icon.svg';
+
 const props = defineProps(['title']);
 
 const showsStore = useShowsStore();
@@ -40,7 +41,7 @@ const handleScroll = (direction) => {
   }
 };
 
-const checkScrollability = async () => {
+const checkScrollability = () => {
   if (scrollContainer.value) {
     const { scrollWidth, clientWidth } = scrollContainer.value;
     isScrollable.value = scrollWidth > clientWidth;
@@ -58,54 +59,54 @@ onMounted(checkScrollability);
   position: relative;
 
   .shows-list-title {
-    font-weight: 600;
-    font-size: 1.5rem;
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-400);
     padding-inline: 1rem;
     color: var(--clr-neutral-200);
   }
-}
 
-.nav-btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-}
-
-.nav-btn.left {
-  right: 64px;
-  top: 36px;
-  transition: transform .1s;
-
-  &:hover {
-    transform: scale(1.2);
+  .nav-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+  
+    &.left {
+      right: 4rem;
+      top: 2.2rem;
+      transition: transform 0.1s;
+  
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  
+    &.right {
+      right: 2rem;
+      top: 2.2rem;
+      transform: rotate(180deg);
+      transition: transform 0.1s;
+  
+      &:hover {
+        transform: rotate(180deg) scale(1.2);
+      }
+    }
   }
-}
 
-.nav-btn.right {
-  right: 34px;
-  top: 36px;
-  transform: rotate(180deg);
-  transition: transform .1s;
-
-  &:hover {
-    transform: rotate(180deg) scale(1.2);
+  .show-card-container {
+    display: flex;
+    overflow-x: scroll;
+    gap: 1.25rem;
+    padding: 1rem;
+    /* For Firefox */
+    scrollbar-width: none; 
+    /* For IE and Edge */
+    -ms-overflow-style: none; 
   }
-}
-
-.show-card-container {
-  display: flex;
-  overflow-x: scroll;
-  gap: 20px;
-  padding: 1rem;
-  /* For Firefox */
-  scrollbar-width: none; 
-  /* For IE and Edge */
-  -ms-overflow-style: none; 
-}
-
-/* For Chrome, Safari, and newer Edge */
-.show-card-container::-webkit-scrollbar {
-  display: none;
+  
+  /* For Chrome, Safari, and newer Edge */
+  .show-card-container::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>

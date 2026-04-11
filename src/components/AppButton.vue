@@ -8,7 +8,7 @@
 const props = defineProps(['btnText']);
 </script>
 
-<style>
+<style scoped>
 .app-button {
   display: flex;
   align-items: center;
