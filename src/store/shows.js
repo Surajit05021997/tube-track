@@ -9,7 +9,7 @@ export const useShowsStore = defineStore('shows', {
   }),
   getters: {
     topShows: (state) => {
-      return state.shows.filter((show) => show?.rating?.average >= 8.5).slice(0, 10);
+      return state.shows.filter((show) => show?.rating?.average >= 9)[0];
     },
     allGenres: (state) => {
       const genresSet = new Set();
@@ -30,6 +30,15 @@ export const useShowsStore = defineStore('shows', {
           showsByGenre[genre].push(show);
         });
       });
+
+      Object.keys(showsByGenre).forEach((genre) => {
+        showsByGenre[genre].sort((a, b) => {
+          const ratingA = a.rating?.average || 0;
+          const ratingB = b.rating?.average || 0;
+          return ratingB - ratingA;
+        });
+      });
+
       return showsByGenre;
     }
   },

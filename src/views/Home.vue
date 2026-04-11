@@ -4,9 +4,9 @@
   </div>
   <div class="top-shows" v-if="!isLoading && !showsError" :style="heroStyle">
     <div class="overlay">
-      <div v-if="showsStore.topShows.length" class="content">
-        <h1 class="top-show-title">{{ showsStore.topShows[5]?.name }}</h1>
-        <div class="top-show-summary" v-html="showsStore.topShows[5]?.summary"></div>
+      <div v-if="showsStore.topShows" class="content">
+        <h1 class="top-show-title">{{ showsStore.topShows?.name }}</h1>
+        <div class="top-show-summary" v-html="showsStore.topShows?.summary"></div>
         <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
       </div>
     </div>
@@ -35,7 +35,7 @@ const { watchShow } = useWatchShow();
 const showsError = ref(false);
 const isLoading = ref(false);
 
-const heroImage = computed(() => showsStore.topShows[5]?.image?.original || '');
+const heroImage = computed(() => showsStore.topShows?.image?.original || '');
 const heroStyle = computed(() => {
   if (heroImage.value) {
     return {
@@ -62,7 +62,7 @@ onMounted(async () => {
 });
 
 const watchButtonHandler = () => {
-  watchShow(showsStore.topShows[5]);
+  watchShow(showsStore.topShows);
 }
 </script>
 

@@ -13,21 +13,20 @@ const props = defineProps(['btnText']);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   background-color: var(--clr-neutral-200);
   color: var(--clr-neutral-800);
   font-size: var(--fs-200);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
   padding: 0.6em 1.8em;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.1s ease;
-}
+  transition: all 0.1s;
 
-.app-button:hover {
-  background-color: var(--clr-primary-400);
-  color: var(--clr-neutral-200);
+  &:hover {
+    background-color: var(--clr-primary-400);
+    color: var(--clr-neutral-200);
+  }
 }
 </style>

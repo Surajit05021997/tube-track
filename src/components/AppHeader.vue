@@ -81,7 +81,11 @@ import userIcon from '@/assets/icons/user-icon.svg';
     }
 
     .logo {
-      width: 10rem;
+      width: 6rem;
+
+      @media screen and (min-width: 768px) {
+        width: 10rem;
+      }
     }
 
     .search {
