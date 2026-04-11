@@ -53,10 +53,14 @@ onMounted(checkScrollability);
 
 <style scoped>
 .shows-list {
-  padding: 2rem;
+  padding: 1rem;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    padding: 2rem;
+  }
 
   .shows-list-title {
     font-weight: var(--fw-medium);
@@ -70,6 +74,11 @@ onMounted(checkScrollability);
     border: none;
     cursor: pointer;
     position: absolute;
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
   
     &.left {
       right: 4rem;
