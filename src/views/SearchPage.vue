@@ -2,7 +2,7 @@
   <div class="search-page">
     <div class="seach-container">
       <div class="search">
-        <img class="search-icon" :src="searchIcon" alt="" />
+        <img class="search-icon" :src="searchIcon" alt="Search Icon" />
         <input class="search-bar" type="text" v-model="searchText" @keyup.enter="searchShow">
       </div>
       <div>Search Results for: {{ route.params.searchText }}</div>
@@ -38,6 +38,7 @@ const searchText = ref('');
 const noShowsFound = ref(false);
 const searchResultError = ref(false);
 const isLoading = ref(false);
+
 showsStore.searchResult = [];
 
 const searchShow = () => {
@@ -68,7 +69,6 @@ const performSearch = async (query) => {
 onMounted(() => {
   performSearch(route.params.searchText);
 });
-
 
 watch(
   () => route.params.searchText,
@@ -108,8 +108,8 @@ watch(
       .search-bar {
         background-color: transparent;
         border: 1px solid rgba(255, 255, 255, 0.259);
-        color: white;
-        padding: 8px 15px 8px 36px;
+        color: var(--clr-neutral-200);
+        padding: 0.5rem 1rem .5rem 2.25rem;
         border-radius: 4px;
         outline: none;
       }
@@ -118,7 +118,7 @@ watch(
     .search-result {
       padding-block: 2rem;
       display: flex;
-      gap: 20px;
+      gap: 1.25rem;
       flex-wrap: wrap;
     }
   }

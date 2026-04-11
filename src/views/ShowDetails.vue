@@ -25,10 +25,10 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router';
 import { useShowsStore } from '@/store/shows';
-import AppButton from '@/components/AppButton.vue';
 import { useWatchShow } from '@/composables/useWatchShow';
+import AppButton from '@/components/AppButton.vue';
 import loadingIcon from '@/assets/icons/loading-icon.svg';
 
 const route = useRoute();
@@ -76,8 +76,6 @@ const watchButtonHandler = () => {
 <style scoped>
 .show-details {
   height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
   position: relative;
   color: var(--clr-neutral-300);
 
@@ -104,7 +102,7 @@ const watchButtonHandler = () => {
     }
     
     .show-title {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
       font-size: 3rem;
 
       @media screen and (min-width: 768px) {
@@ -115,13 +113,12 @@ const watchButtonHandler = () => {
     .metadata {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: .25rem;
-      font-family: sans-serif;
+      gap: 0.75rem;
+      margin-bottom: 0.25rem;
       
       .badge {
         background-color: var(--clr-primary-400);;
-        padding: 2px 6px;
+        padding: 0.125em 0.375em;
         border-radius: 4px;
         font-size: 1rem;
         font-weight: bold;
@@ -136,12 +133,12 @@ const watchButtonHandler = () => {
 
     .genres-row {
       margin-bottom: 1.5rem;
-      font-size: .9rem;
+      font-size: 0.9rem;
       color: var(--clr-neutral-200);
       font-weight: 400;
 
       @media screen and (min-width: 768px) {
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
     }
 

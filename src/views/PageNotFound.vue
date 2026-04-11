@@ -24,23 +24,23 @@ import AppButton from '@/components/AppButton.vue';
   background-color: var(--clr-neutral-800);
   color: var(--clr-neutral-200);
   padding: 2rem;
-}
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.error-code {
-  font-size: 10rem;
-  font-weight: var(--fw-black);
-  margin: 0;
-  color: var(--clr-neutral-200);
-}
-
-.error-message {
-  font-size: 2rem;
-  margin-block: 1rem;
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    .error-code {
+      font-size: 10rem;
+      font-weight: var(--fw-black);
+      margin: 0;
+      color: var(--clr-neutral-200);
+    }
+  
+    .error-message {
+      font-size: 2rem;
+      margin-block: 1rem;
+    }
+  }
 }
 </style>
