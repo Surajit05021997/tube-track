@@ -7,7 +7,6 @@ export function useWatchShow() {
       window.open(site, '_blank');
     } else {
       console.warn("No official site found for this show.");
-      // Optional: Redirect to a fallback or show a toast notification
     }
   };
 

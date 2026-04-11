@@ -1,17 +1,17 @@
 <template>
   <div class="loading" v-if="isLoading">
-    <img :src="loadingIcon" alt="">
+    <img :src="loadingIcon" alt="Loading Homepage">
   </div>
-  <div class="top-shows" v-if="!isLoading && !showsError" :style="heroStyle">
+  <div class="top-shows" v-if="showsStore.topShows && !isLoading && !showsError" :style="heroStyle">
     <div class="overlay">
-      <div v-if="showsStore.topShows" class="content">
+      <div class="content">
         <h1 class="top-show-title">{{ showsStore.topShows?.name }}</h1>
         <div class="top-show-summary" v-html="showsStore.topShows?.summary"></div>
         <AppButton class="watch-button" btnText="Watch" @click="watchButtonHandler"></AppButton>
       </div>
     </div>
   </div>
-  <div v-if="showsStore.shows.length && !isLoading && !showsError" class="show-list-by-genre">
+  <div class="show-list-by-genre" v-if="showsStore.shows.length && !isLoading && !showsError">
     <div v-for="genre in showsStore.allGenres">
       <ShowsList :title="genre"></ShowsList>
     </div>
@@ -24,9 +24,9 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useShowsStore } from '@/store/shows';
+import { useWatchShow } from '@/composables/useWatchShow';
 import ShowsList from '@/components/ShowsList.vue';
 import AppButton from '@/components/AppButton.vue';
-import { useWatchShow } from '@/composables/useWatchShow';
 import loadingIcon from '@/assets/icons/loading-icon.svg';
 
 const showsStore = useShowsStore();
@@ -54,7 +54,6 @@ onMounted(async () => {
     isLoading.value = true;
     await showsStore.fetchShows();
   } catch (err) {
-    console.error('Failed to load shows', err);
     showsError.value = true;
   } finally {
     isLoading.value = false;
@@ -69,11 +68,9 @@ const watchButtonHandler = () => {
 <style scoped>
 .top-shows {
   height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
   position: relative;
   color: var(--clr-neutral-200);
-
+    
   .overlay {
     position: absolute;
     inset: 0;

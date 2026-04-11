@@ -34,7 +34,7 @@ import AppButton from '@/components/AppButton.vue';
 
 .error-code {
   font-size: 10rem;
-  font-weight: 800;
+  font-weight: var(--fw-black);
   margin: 0;
   color: var(--clr-neutral-200);
 }
