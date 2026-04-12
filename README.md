@@ -27,7 +27,7 @@ TubeTrack is a robust TV show discovery and information platform built with Vue 
 
 ## 📦 Project Setup
 
-### Node and NPM version
+### Node and NPM Version
 
 - Node: 24.12.0
 - NPM: 11.6.2
@@ -52,13 +52,13 @@ npm run build
 
 ## 🧪 Testing & Quality Assurance
 
-### Run all unit tests
+### Run All Unit Tests
 
 ```sh
 npm run test
 ```
 
-### Generate code coverage report
+### Generate Code Coverage Report
 
 ```sh
 npm run test:coverage
