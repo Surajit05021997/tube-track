@@ -1,25 +1,38 @@
-# tube-track
+# 📺 TubeTrack
 
-This template should help get you started developing with Vue 3 in Vite.
+TubeTrack is a robust TV show discovery and information platform built with Vue 3 and Vite. By integrating the TV Maze API, it serves as a comprehensive encyclopedia for television content, allowing users to explore vast catalogs, access deep-dive show metadata, and stay informed about their favorite series through a high-performance, reactive interface.
 
-## Recommended IDE Setup
+## 🛠️ Tech Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Framework: Vue 3 (Composition API)
+- Build Tool: Vite
+- State Management: Pinia
+- Routing: Vue Router 4
+- HTTP Client: Axios
+- Testing: Vitest
+- Styling: CSS3
 
-## Recommended Browser Setup
+## 📐 Architecture Decisions
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### Tech Stack Rationale
 
-## Customize configuration
+- Vite: Selected over Webpack to ensure a lightning-fast development experience. Its Hot Module Replacement (HMR) allows for near-instant updates during the rapid iteration of UI components.
+- Pinia: Replaces Vuex as the state management solution due to its simpler API and better modularity.
+- Vitest: Picked for its seamless integration with Vite. Since it shares the same configuration, it provides a much faster and more reliable testing environment compared to Jest in a Vite-based project.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Design & Pattern Strategy
 
-## Project Setup
+- Atomic Design: UI elements (Buttons, Cards) are built as highly reusable "atoms" to maintain visual consistency and reduce CSS duplication across the app.
+- Responsive Scaling: Implemented responsive UI using modern layout engines like Flexbox. This ensures the website layouts remain immersive and responsive on everything from small mobile screens to largre monitor.
+
+## 📦 Project Setup
+
+### Node and NPM version
+
+- Node: 24.12.0
+- NPM: 11.6.2
+
+### Installation
 
 ```sh
 npm install
@@ -35,4 +48,18 @@ npm run dev
 
 ```sh
 npm run build
+```
+
+## 🧪 Testing & Quality Assurance
+
+### Run all unit tests
+
+```sh
+npm run test
+```
+
+### Generate code coverage report
+
+```sh
+npm run test:coverage
 ```
